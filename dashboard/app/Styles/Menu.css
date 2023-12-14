@@ -14,7 +14,7 @@
     background-color: var(--darkGreen);
     margin: 0.5rem;
     border-radius: 10px;
-    height: 97vh;
+    height: 105vh;
     flex-direction: column;
     font-family: 'Kanit', sans-serif;
 }
@@ -59,9 +59,12 @@
 
 .main-container .content .navbar{
     background-color: var(--darkGreen);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     margin: 0.5rem 0.2rem;
     border-radius: 10px;
-    position: sticky;
+    position: fixed;
+    width: 78%;
     height: 10vh;
     padding: 0.7rem 1rem;
     display: flex;
