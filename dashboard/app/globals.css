@@ -1,0 +1,29 @@
+:root{
+    --black: #0d1b2a;
+    --lightblack: #1b263b;
+    --gray: #415a77;
+    --ligthgray: #778da9;
+    --white: #e0e1dd;
+
+    --green: #cad2c5;
+    --lightgreen: #84a98c;
+    --middlegreen: #52796f;
+    --darkGreen: #354f52;
+    --extradarkgreen: #2f3e46;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--extradarkgreen);
+    color: var(--green);
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
