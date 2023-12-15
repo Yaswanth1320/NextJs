@@ -44,8 +44,8 @@ export default function Products() {
             <td>29</td>
             <td>
               <div className="update">
-                <Link href="/dashboard/user/add">
-                  <button className="add-btn">Add</button>
+                <Link href="/dashboard/user/test">
+                  <button className="add-btn">view</button>
                 </Link>
                 <Link href="/dashboard/user/add">
                   <button className="del-btn">Delete</button>

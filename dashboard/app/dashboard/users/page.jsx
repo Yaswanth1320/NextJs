@@ -10,7 +10,7 @@ export default function Users() {
     <div className="users">
       <div className="top">
         <Search placeholder="Search for user" />
-        <Link href="/dashboard/user/add">
+        <Link href="/dashboard/users/add">
           <button className="addButton">Add New</button>
         </Link>
       </div>
@@ -44,8 +44,8 @@ export default function Users() {
             <td>active</td>
             <td>
               <div className="update">
-                <Link href="/dashboard/user/add">
-                  <button className="add-btn">Add</button>
+                <Link href={`/dashboard/users/test`}>
+                  <button className="add-btn">View</button>
                 </Link>
                 <Link href="/dashboard/user/add">
                   <button className="del-btn">Delete</button>
