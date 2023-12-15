@@ -1,5 +1,5 @@
-import '../../../Styles/AddUser.css';
-import Image from 'next/image'
+import "../../../Styles/AddUser.css";
+import Image from "next/image";
 
 export default function SingleUserPage() {
   return (
@@ -32,6 +32,7 @@ export default function SingleUserPage() {
             <option value={true}>Yes</option>
             <option value={false}>No</option>
           </select>
+          <button>Update</button>
         </form>
       </div>
     </div>

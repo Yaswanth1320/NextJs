@@ -63,7 +63,7 @@
     display: flex;
     gap: 20px;
     background-color: var(--darkGreen);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     margin-left: 0.3rem;
     margin-right: 0.5rem;
@@ -111,7 +111,7 @@
     padding: 8px;
     background-color: transparent;
     color: var(--green);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     border: 1px solid var(--lightgreen);
     font-family: 'Kanit', sans-serif;
     font-size: 1rem;
@@ -120,4 +120,23 @@
 .singleUserForm label{
     color: grey;
     font-size: 0.8rem;
+}
+
+.singleUserForm button{
+    width: 100%;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: #84a98c;
+    color: white;
+    transition: 0.3s all ease-in;
+}
+
+.singleUserForm button:hover{
+    background-color: #415a77;
+    color: var(--green);
 }

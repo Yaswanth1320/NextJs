@@ -31,3 +31,7 @@ a{
 body::-webkit-scrollbar{
     display: none;
 }
+
+input:focus,select:focus,textarea:focus{
+    outline: var(--green)
+}

@@ -70,7 +70,7 @@ function Sidebar() {
           <IoMdSettings />
           Settings
         </Link>
-        <Link href="/">
+        <Link href="/login">
           <IoLogOut />
           Logout
         </Link>
