@@ -1,9 +1,10 @@
 import "../../../Styles/AddProduct.css";
+import { addProduct } from "../../../api/actions";
 
 export default function AddProductPage() {
   return (
     <div className="add-product">
-      <form action="" className="product-form">
+      <form action={addProduct} className="product-form">
         <input type="text" name="title" placeholder="title" required />
         <select name="cat" id="cat">
           <option value="general">Choose a Category</option>

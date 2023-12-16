@@ -4,9 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "../../components/Pagination";
 import { fetchUsers } from "../../api/data";
+import { deleteUser } from "../../api/actions"
 
-const Users = async() => {
-  const users = await fetchUsers()
+const Users = async ({ searchParams }) => {
+   const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const { count, users } = await fetchUsers(q, page);
+
   return (
     <div className="users">
       <div className="top">
@@ -34,7 +38,7 @@ const Users = async() => {
                   <Image
                     width={40}
                     height={40}
-                    src="/user1.jpg"
+                    src={user.img || "/noavatar.png"}
                     className="user-image"
                     alt="user"
                   />
@@ -42,26 +46,27 @@ const Users = async() => {
                 </div>
               </td>
               <td>{user.email}</td>
-              <td>13.01.2024</td>
-              <td>Admin</td>
-              <td>active</td>
+              <td>{user.createdAt.toString().slice(4, 16)}</td>
+              <td>{user.isAdmin ? "Admin" : "Client"}</td>
+              <td>{user.isActive ? "Active" : "Not Active"}</td>
               <td>
                 <div className="update">
-                  <Link href={`/dashboard/users/test`}>
+                  <Link href={`/dashboard/users/${user.id}`}>
                     <button className="add-btn">View</button>
                   </Link>
-                  <Link href="/dashboard/user/add">
+                  <form action={deleteUser}>
+                    <input type="hidden" name="id" value={user.id} />
                     <button className="del-btn">Delete</button>
-                  </Link>
+                  </form>
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   );
-}
+};
 
 export default Users
