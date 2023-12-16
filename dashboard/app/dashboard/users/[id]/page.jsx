@@ -1,4 +1,4 @@
-import "../../../Styles/AddUser.css";
+import "../../../Styles/newUser.css";
 import Image from "next/image";
 import { fetchUser } from "../../../api/data";
 import { updateUser } from "../../../api/actions";

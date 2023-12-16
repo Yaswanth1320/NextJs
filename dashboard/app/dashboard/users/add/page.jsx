@@ -1,4 +1,4 @@
-import "../../../Styles/Adduser.css";
+import "../../../Styles/newUser.css";
 import { addUser } from "../../../api/actions";
 
 export default function AddUserPage() {

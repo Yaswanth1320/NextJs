@@ -3,8 +3,10 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { connectToDatabase } from "./db";
-import bcrypt from "bcrypt";
-import { User,Product } from "./Models";
+import bcrypt from 'bcrypt'
+import { User,Product } from "./Models"
+import { signIn } from "../auth";
+
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
@@ -148,4 +150,15 @@ export const updateProduct = async (formData) => {
 
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
+};
+
+export const authenticate = async (prevState, formData) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+    revalidatePath("/login");
+  } catch (err) {
+    return "Wrong Credentials!";
+  }
 };
