@@ -157,7 +157,6 @@ export const authenticate = async (prevState, formData) => {
 
   try {
     await signIn("credentials", { username, password });
-    revalidatePath("/login");
   } catch (err) {
     return "Wrong Credentials!";
   }
