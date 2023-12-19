@@ -1,9 +1,9 @@
-import { getApp,getApps, initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB28l0v5jbu9kvd3nq1BuTUJWr2Znl0i3A",
+  apiKey: process.env.DB_SECERT_KEY,
   authDomain: "dropzone-1af56.firebaseapp.com",
   projectId: "dropzone-1af56",
   storageBucket: "dropzone-1af56.appspot.com",
@@ -15,4 +15,4 @@ const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { db,storage }
+export { db, storage };
