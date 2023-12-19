@@ -1,5 +1,5 @@
 "use client";
-
+import moment from "moment";
 import { FileType } from "@/types";
 import {FileIcon} from "react-file-icon"
 import { ColumnDef } from "@tanstack/react-table";
@@ -42,16 +42,16 @@ export const columns: ColumnDef<FileType>[] = [
   },
   {
     accessorKey: "downloadUrl",
-    header: "Size",
+    header: "Download",
     cell: ({ renderValue, ...props }) => {
       return (
-        <Link
+        <a
           href={renderValue() as string}
           target="_blank"
           className="underline text-blue-500 hover:text-blue-600"
         >
           Download
-        </Link>
+        </a>
       );
     },
   },

@@ -13,7 +13,7 @@ export default function Dropzone() {
     const { isLoaded, isSignedIn, user } = useUser()
 
     const onDrop = (acceptedFiles: File[]) => {
-        acceptedFiles.forEach((file) =>{
+        acceptedFiles?.forEach((file) =>{
             const reader = new FileReader();
             reader.onabort = () =>{
                 console.log('File reading was aboarded')
@@ -37,7 +37,7 @@ export default function Dropzone() {
             userId: user.id,
             fileName: selectedFile.name,
             fullName: user.fullName,
-            profileImage: user.imageUrl,
+            profileImage: user?.imageUrl,
             timeStamp: serverTimestamp(),
             type: selectedFile.type,
             size: selectedFile.size

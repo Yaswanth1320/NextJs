@@ -15,6 +15,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { FileType } from "@/types";
+import { Button } from "./ui/button";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,7 +35,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border w-[1200px]">
+    <div className="rounded-md border w-[1207px]">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -64,12 +67,24 @@ export function DataTable<TData, TValue>({
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+
+                <TableCell key={(row.original as FileType).id}>
+                  <Button
+                    variant={"outline"}
+                    onClick={() =>
+                      console.log("hello")
+                      // openDeleteModel((row.original as FileType).id)
+                    }
+                  >
+                    <TrashIcon fontSize={10} />
+                  </Button>
+                </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                No files found
               </TableCell>
             </TableRow>
           )}
