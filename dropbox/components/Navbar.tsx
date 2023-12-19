@@ -15,7 +15,7 @@ export default function Navbar() {
             height={50}
           />
         </div>
-        <h1 className="font-bold text-xl">Dropbox</h1>
+        <h1 className="font-bold text-xl">DropZone</h1>
       </Link>
 
       <div className="flex items-center gap-2">

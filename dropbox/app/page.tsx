@@ -1,22 +1,19 @@
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
+import Image from "next/image";
+import Curosel from "@/components/Curosel";
 
 export default function Home() {
   return (
-    <main>
-      <div className="flex flex-col p-10 bg-[#2B2929] dark:bg-slate-800 text-white space-y-5">
-          <h1 className="text-5xl font-bold">
+    <main className="font-abc z-0">
+      <div className="flex flex-col items-center justify-center gap-4 p-12 bg-[#2B2929] dark:bg-slate-800 text-white lg:flex-row">
+        <div className="flex flex-col">
+          <h1 className="text-5xl font-bold pb-4">
             Welcome to DropZone
             <br />
             Store and access from anywhere
           </h1>
-          <p className="pb-20">
+          <p className="pb-8">
             Dropbox is a cloud storage and file synchronization service that
             allows you to store and access your files from anywhere. It provides
             a seamless way to sync files across multiple devices and share them
@@ -27,11 +24,18 @@ export default function Home() {
           </p>
           <Link
             href="/dashboard"
-            className="flex items-center gap-3  rounded-xlcursor-pointer bg-blue-500 p-5 w-fit"
+            className="flex items-center gap-2 hover:gap-4 transition-all ease-in hover:duration-600 rounded-xlcursor-pointer bg-blue-500 px-4 py-3 w-fit"
           >
             Try for free <ArrowRightIcon />
           </Link>
         </div>
+
+        <div className="p-4 bg-[#2B2929] dark:bg-slate-800 h-full">
+          <Image src="/img1.jpg" alt="img1" width={1300} height={1300} className="rounded-xl" />
+        </div>
+
+        {/* <Curosel/> */}
+      </div>
     </main>
   );
 }

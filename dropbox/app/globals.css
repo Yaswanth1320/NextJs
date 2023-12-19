@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
  
 @layer base {
   :root {
@@ -74,8 +74,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-*{
-  font-family: 'Kanit', sans-serif;
 }
