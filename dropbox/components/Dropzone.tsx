@@ -7,6 +7,7 @@ import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { db, storage } from "@/firebase";
 import { serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import toast from "react-hot-toast";
 
 export default function Dropzone() {
     const [loading,setLoading] = useState<boolean>(false);
@@ -33,6 +34,9 @@ export default function Dropzone() {
         if(loading) return;
         if(!user) return;
 
+        setLoading(true);
+        const toastId = toast.loading('uploading file...')
+
         const docRef = await addDoc(collection(db,"users",user.id,"files"),{
             userId: user.id,
             fileName: selectedFile.name,
@@ -53,7 +57,9 @@ export default function Dropzone() {
             })
         })
 
-        setLoading(true);
+        toast.success("uploaded successfully",{
+          id: toastId
+        })
         setLoading(false);
     }
 

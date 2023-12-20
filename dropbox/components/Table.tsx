@@ -17,12 +17,17 @@ import {
 } from "@/components/ui/table";
 import { FileType } from "@/types";
 import { Button } from "./ui/button";
-import { TrashIcon } from "@radix-ui/react-icons";
+import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { useAppStore } from "@/store/store";
+import { DeleteModel } from "./DeleteModel";
+import RenameModel from "./RenameModel";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
+
 
 export function DataTable<TData, TValue>({
   columns,
@@ -33,6 +38,26 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const [setIsDeleteModelOpen, setFileId, setFileName, setIsRenameModelOpen] =
+    useAppStore((state) => [
+      state.setIsDeleteModelOpen,
+      state.setFileId,
+      state.setFileName,
+      state.setIsRenameModelOpen,
+    ]);
+
+  const deleteFile = (fileId: string) => {
+    setFileId(fileId);
+    setIsDeleteModelOpen(true);
+  };
+
+  const renameFile = (fileId: string,fileName: string) =>{
+    setFileId(fileId);
+    setFileName(fileName);
+    setIsRenameModelOpen(true);
+  }
+
 
   return (
     <div className="rounded-md border w-[1207px]">
@@ -62,18 +87,38 @@ export function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
+                <DeleteModel/>
+                <RenameModel/>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {cell.column.id === "timeStamp" ? (
+                      <div className="flex flex-col">
+                        <div className="text-sm">
+                          {(cell.getValue() as Date).toLocaleDateString()}
+                        </div>
+
+                        <div className="text-xs text-gray-500">
+                          {(cell.getValue() as Date).toLocaleTimeString()}
+                        </div>
+                      </div>
+                    ) : cell.column.id === "fileName" ? (
+                      <p
+                        onClick={() => renameFile((row.original as FileType).id,(row.original as FileType).fileName)}
+                        className="underline flex item-center text-blue-500 hover:cursor-pointer"
+                      >
+                        {cell.getValue() as string}{" "}
+                        <Pencil1Icon className="ml-2" />
+                      </p>
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
                   </TableCell>
                 ))}
 
                 <TableCell key={(row.original as FileType).id}>
                   <Button
                     variant={"outline"}
-                    onClick={() =>
-                      console.log("hello")
-                      // openDeleteModel((row.original as FileType).id)
+                    onClick={() => deleteFile((row.original as FileType).id)
                     }
                   >
                     <TrashIcon fontSize={10} />
