@@ -7,3 +7,21 @@ export type FileType = {
   type: string;
   size: string;
 };
+
+export type UserData = {
+  icon: JSX.Element;
+  name: string;
+  title: string;
+  cost: string;
+  users: string;
+  storage: string;
+  time: string;
+  delivery: string;
+  features: string;
+};
+
+export type features = {
+  icon: JSX.Element;
+  title: string;
+  desc: string;
+};
