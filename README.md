@@ -1,7 +1,3 @@
-# NextJS
-
-## Deployment Links
-
-### DropZone
-
+**Deployment Links**
+**DropZone**
 *https://dropzonr.vercel.app*
