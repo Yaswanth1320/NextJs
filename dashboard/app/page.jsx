@@ -1,7 +1,11 @@
+import Link from "next/link";
+
 const Homepage = () => {
   return (
-    <div>Homepage</div>
-  )
-}
+    <div className="w-screen h-screen flex item-center justify-center">
+      Login to view the dashboard <Link href="/login">click here</Link>
+    </div>
+  );
+};
 
-export default Homepage
+export default Homepage;
