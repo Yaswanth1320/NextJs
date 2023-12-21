@@ -31,10 +31,11 @@ export default function Home() {
               <Image
                 key={item.id}
                 src={item.src}
+                priority={false}
                 width={300}
                 height={300}
                 alt="home"
-                className="object-cover pb-2 rounded-lg"
+                className="w-auto h-auto object-cover pb-2 rounded-lg"
               />
 
               <p className="font-bold text-[0.9rem]">{item.title}</p>
