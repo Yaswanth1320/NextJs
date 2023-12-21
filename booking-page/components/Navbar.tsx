@@ -49,10 +49,10 @@ export default function componentName() {
   const [menu, setMenu] = useState(false);
   return (
     <>
-      <nav className="bg-[#344e41] font-abc mx-auto flex items-center lg:px-32 w-full justify-between p-6">
+      <nav className="bg-[#344e41] font-abc mx-auto flex items-center lg:px-40 w-full justify-between p-6">
         <div className="flex lg:flex-1">
-          <Link href="/" className="text-white text-xl">
-            GoBeyond
+          <Link href="/" className="text-[#ecf39e] text-2xl font-bold">
+            Destinations.com
           </Link>
         </div>
 
