@@ -52,7 +52,9 @@ export async function fetchResults(searchParams: SearchParams) {
             _fns: [
               {
                 _fn: "xpath_one",
-                _args: [".//div[@data-testid='title']/text()"],
+                _args: [
+                  ".//div[contains(@class, 'c5ca594cb1 f19ed67e4b')]/div[contains(@class, 'abf093bdfe f45d8e4c32')]/text()",
+                ],
               },
             ],
           },
@@ -116,9 +118,7 @@ export async function fetchResults(searchParams: SearchParams) {
         _fns: [
           {
             _fn: "xpath_one",
-            _args: [
-              ".//div[contains(@class, 'c5ca594cb1 f19ed67e4b')]/div[contains(@class, 'abf093bdfe f45d8e4c32')]/text()",
-            ],
+            _args: [".//h1/text()"],
           },
         ],
       },
@@ -139,12 +139,12 @@ export async function fetchResults(searchParams: SearchParams) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      if (data.results?.length === 0) {
-        const result: Result = data.results[0];
+      if (data.results?.length === 0) return;
+      const result: Result = data.results[0];
 
-        return result;
-      }
+      return result;
     })
     .catch((err) => console.log(err));
+
+  return response;
 }
