@@ -3,6 +3,7 @@ import { Country,City } from "country-state-city"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Select from 'react-select';
+import { FaCity } from "react-icons/fa";
 import { BsGlobeEuropeAfrica } from "react-icons/bs";
 
 const options = Country.getAllCountries().map((country) =>({
@@ -68,25 +69,25 @@ function PlacePicker() {
       {selectedCountry && (
         <div>
           <div className="flex items-center gap-1 mb-1">
-            <BsGlobeEuropeAfrica size={14} />
+            <FaCity size={14} />
             <label htmlFor="country">City</label>
           </div>
           <Select
             value={selectedCity}
             onChange={handleSelectedCity}
             className="dark:text-black dark:bg-[#495057]"
-            options={
-                City.getCitiesOfCountry(selectedCountry.value.isoCode)?.map((city) =>({
-                    value:{
-                        latitude: city.latitude!,
-                        longitude: city.longitude!,
-                        countryCode: city.countryCode,
-                        name: city.name,
-                        stateCode: city.stateCode,              
-                    },
-                    label: city.name
-                }))
-            }
+            options={City.getCitiesOfCountry(
+              selectedCountry.value.isoCode
+            )?.map((city) => ({
+              value: {
+                latitude: city.latitude!,
+                longitude: city.longitude!,
+                countryCode: city.countryCode,
+                name: city.name,
+                stateCode: city.stateCode,
+              },
+              label: city.name,
+            }))}
           />
         </div>
       )}

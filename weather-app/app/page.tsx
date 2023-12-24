@@ -4,20 +4,14 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Divider } from "@tremor/react";
 import PlacePicker from "@/components/PlacePicker";
 
 
 export default function Home() {
   return (
-    <>
-      <div className="w-full flex justify-end bg-[#dee2e6] dark:bg-[#212529] p-2">
-        <Toggler />
-      </div>
       <main className="font-cabin min-h-screen bg-[#dee2e6] dark:bg-[#212529] p-10 flex flex-col justify-center items-center">
         <Card className="w-[400px] lg:w-[600px]">
           <CardHeader>
@@ -34,6 +28,5 @@ export default function Home() {
           </CardContent>
         </Card>
       </main>
-    </>
   );
 }
