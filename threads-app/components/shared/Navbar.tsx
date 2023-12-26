@@ -7,8 +7,8 @@ import { dark } from '@clerk/themes';
 export default function Navbar() {
   return (
     <nav className="font-kanit fixed top-0 z-30 flex w-full items-center justify-between bg-dark-2 px-6 py-3">
-      <Link href="/" className="flex items-center gap-4">
-        <Image src="/logo.svg" alt="logo" width={28} height={28} />
+      <Link href="/" className="flex items-center gap-1">
+        <Image src="/threads.svg" className="rounded-full" alt="logo" width={38} height={38} />
         <p className="text-heading3-bold text-light-1 max-xs:hidden">Threads</p>
       </Link>
 
