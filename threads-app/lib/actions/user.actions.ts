@@ -1,10 +1,26 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import User from "../models/user.model";
-import { connectToDB } from "../mongoose";
-import Thread from "../models/thread.model";
 import { FilterQuery, SortOrder } from "mongoose";
+import { revalidatePath } from "next/cache";
+
+import Community from "../models/community.model";
+import Thread from "../models/thread.model";
+import User from "../models/user.model";
+
+import { connectToDB } from "../mongoose";
+
+export async function fetchUser(userId: string) {
+  try {
+    connectToDB();
+
+    return await User.findOne({ id: userId }).populate({
+      path: "communities",
+      model: Community,
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to fetch user: ${error.message}`);
+  }
+}
 
 interface Params {
   userId: string;
@@ -17,15 +33,15 @@ interface Params {
 
 export async function updateUser({
   userId,
-  username,
-  name,
   bio,
+  name,
+  path,
+  username,
   image,
-  path
 }: Params): Promise<void> {
-  connectToDB();
-
   try {
+    connectToDB();
+
     await User.findOneAndUpdate(
       { id: userId },
       {
@@ -46,28 +62,18 @@ export async function updateUser({
   }
 }
 
-export async function fetchUser(userId: string) {
-  try {
-    connectToDB();
-
-    return await User.findOne({ id: userId })
-    // .populate({
-    //   path: "communities",
-    //   model: Community,
-    // });
-  } catch (error: any) {
-    throw new Error(`Failed to fetch user: ${error.message}`);
-  }
-}
-
 export async function fetchUserPosts(userId: string) {
   try {
     connectToDB();
-
     const threads = await User.findOne({ id: userId }).populate({
       path: "threads",
       model: Thread,
       populate: [
+        {
+          path: "community",
+          model: Community,
+          select: "name id image _id", 
+        },
         {
           path: "children",
           model: Thread,
@@ -79,7 +85,6 @@ export async function fetchUserPosts(userId: string) {
         },
       ],
     });
-    
     return threads;
   } catch (error) {
     console.error("Error fetching user threads:", error);
@@ -89,33 +94,31 @@ export async function fetchUserPosts(userId: string) {
 
 export async function fetchUsers({
   userId,
-  searchString= "",
+  searchString = "",
   pageNumber = 1,
   pageSize = 20,
   sortBy = "desc",
-} : {
-  userId:string;
+}: {
+  userId: string;
   searchString?: string;
-  pageNumber: number;
-  pageSize?:number;
+  pageNumber?: number;
+  pageSize?: number;
   sortBy?: SortOrder;
-}){
+}) {
   try {
     connectToDB();
+
     const skipAmount = (pageNumber - 1) * pageSize;
     const regex = new RegExp(searchString, "i");
-
     const query: FilterQuery<typeof User> = {
       id: { $ne: userId },
     };
-
     if (searchString.trim() !== "") {
       query.$or = [
         { username: { $regex: regex } },
         { name: { $regex: regex } },
       ];
     }
-
     const sortOptions = { createdAt: sortBy };
 
     const usersQuery = User.find(query)
@@ -130,6 +133,7 @@ export async function fetchUsers({
 
     return { users, isNext };
   } catch (error) {
+    console.error("Error fetching users:", error);
     throw error;
   }
 }
@@ -138,7 +142,6 @@ export async function getActivity(userId: string) {
   try {
     connectToDB();
     const userThreads = await Thread.find({ author: userId });
-
     const childThreadIds = userThreads.reduce((acc, userThread) => {
       return acc.concat(userThread.children);
     }, []);

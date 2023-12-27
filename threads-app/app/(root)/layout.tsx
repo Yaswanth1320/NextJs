@@ -23,10 +23,10 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Navbar />
-          <main className="flex flex-row">
+          <main className="flex flex-row scrollbar-hide">
             <LeftSideBar />
-            <section className="main-container">
-              <div className="w-full max-w-4xl">{children}</div>
+            <section className="main-container scrollbar-hide">
+              <div className="w-full max-w-8xl">{children}</div>
             </section>
             <RightSideBar />
           </main>

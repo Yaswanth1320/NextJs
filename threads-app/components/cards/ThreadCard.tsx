@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { formatDateString } from "@/lib/utils";
 
 interface Props{
     id:string;
@@ -45,7 +46,10 @@ function ThreadCard({
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/profile/${author.id}`} className={`relative ${isComment? 'h-12 w-12':'h-14 w-14'}` }>
+            <Link
+              href={`/profile/${author.id}`}
+              className={`relative ${isComment ? "h-12 w-12" : "h-14 w-14"}`}
+            >
               <Image
                 src={author.image}
                 alt="profile image"
@@ -108,6 +112,48 @@ function ThreadCard({
           </div>
         </div>
       </div>
+      {!isComment && comments.length > 0 && (
+        <div className="ml-1 mt-3 flex items-center">
+          {comments.slice(0, 2).map((comment, index) => (
+            <div className="relative h-6 w-6 object-cover">
+            <Image
+              key={index}
+              src={comment.author.image}
+              alt={`user_${index}`}
+              fill
+              className={`${index !== 0 && "-ml-2"} rounded-full object-cover`}
+            />
+            </div>
+          ))}
+
+          <Link href={`/thread/${id}`}>
+            <p className="ml-1 text-subtle-medium text-gray-1">
+              {comments.length} repl{comments.length > 1 ? "ies" : "y"}
+            </p>
+          </Link>
+        </div>
+      )}
+
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-3 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)}
+            {community && ` - ${community.name} Community`}
+          </p>
+
+          <div className="ml-0.5 relative h-3 w-3 object-cover">
+            <Image
+              src={community.image}
+              alt={community.name}
+              fill
+              className="object-cover rounded-full shadow-2xl"
+            />
+          </div>
+        </Link>
+      )}
     </article>
   );
 }

@@ -217,5 +217,5 @@ module.exports = {
       rob: ["Roboto", "sans-serif"],
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 };

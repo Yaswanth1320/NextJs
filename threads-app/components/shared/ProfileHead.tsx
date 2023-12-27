@@ -8,11 +8,12 @@ interface Props{
     username:string;
     imgUrl: string;
     bio:string;
+    type?: 'User' | 'Community';
 }
 
 function ProfileHead({ accountId, authUserId, name, username, imgUrl, bio }: Props) {
   return (
-    <div className="flex flex-col justify-start w-full">
+    <div className="font-kanit flex flex-col justify-start w-full">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-1.5">
           <div className="relative h-20 w-20 object-cover">

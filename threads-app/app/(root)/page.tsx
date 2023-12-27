@@ -7,14 +7,14 @@ export default async function Home() {
   const result = await fetchPosts(1,30);
   
   return (
-    <div className="font-abc">
+    <div className="font-abc scrollbar-hide">
       <section className="mt-6 flex flex-col gap-6">
-          {result.posts.length === 0 ? (
-            <p className="no-result">No posts found.</p>
-          ):(
-              <>
-              {result.posts.map((post) =>(
-                <ThreadCard 
+        {result.posts.length === 0 ? (
+          <p className="no-result">No posts found.</p>
+        ) : (
+          <>
+            {result.posts.map((post) => (
+              <ThreadCard
                 key={post._id}
                 id={post._id}
                 currentUserId={user?.id || ""}
@@ -24,10 +24,10 @@ export default async function Home() {
                 community={post.community}
                 createdAt={post.createdAt}
                 comments={post.children}
-                />
-              ))}
-              </>
-          )}
+              />
+            ))}
+          </>
+        )}
       </section>
     </div>
   );
