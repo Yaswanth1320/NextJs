@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/Navbar";
+import { SessionProvider } from "@/components/session";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +26,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="font-kanit max-w-7xl mx-auto p-8 space-y-2 ">
+          <main className="font-kanit max-w-7xl mx-auto p-6 space-y-2 ">
             <Navbar />
             {children}
           </main>
         </ThemeProvider>
+        <SessionProvider />
       </body>
     </html>
   );
