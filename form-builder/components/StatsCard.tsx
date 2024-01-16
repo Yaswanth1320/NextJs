@@ -19,8 +19,8 @@ export const StatsCard = ({
 }) => {
   return (
     <Card className={className}>
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm text-muted-foreground">{title}</CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
@@ -32,6 +32,7 @@ export const StatsCard = ({
           )}
           {!loading && value}
         </div>
+        <p className="pt-1 text-xs text-muted-foreground">{helperText}</p>
       </CardContent>
     </Card>
   );

@@ -1,5 +1,4 @@
 "use server"
-
 import { currentUser } from "@clerk/nextjs";
 import prisma from "@/lib/prisma";
 
