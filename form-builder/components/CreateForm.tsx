@@ -11,6 +11,7 @@ import {
 import { FaFileUpload } from "react-icons/fa";
 import { Button } from "./ui/button";
 import { ImSpinner } from "react-icons/im";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -29,6 +30,7 @@ import { formSchema, formSchemaType } from "@/schema/form";
 import { CreateForm } from "@/serveractions/form";
 
 export const CreateFormBtn = () => {
+    const router = useRouter();
   const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   });
@@ -40,7 +42,7 @@ export const CreateFormBtn = () => {
         title: "Success",
         description: "Form submitted successfully",
       });
-      console.log("Formid", formId);
+      router.push(`/builder/${formId}`)
     } catch (error) {
       toast({
         title: "Error",
@@ -53,10 +55,10 @@ export const CreateFormBtn = () => {
     <Dialog>
       <DialogTrigger>
         <Button
-          className="group border border-primary/20 h-[180px] w-[200px] text-[0.9rem] flex 
+          className="group border border-primary/20 h-[180px] w-full text-[1.1rem] flex 
         flex-col items-center justify-center hover:border-primary hover:cursor-pointer border-dashed gap-2"
         >
-          <FaFileUpload className="text-[1.1rem]" />
+          <FaFileUpload className="text-[1.3rem]" />
           Create new form
         </Button>
       </DialogTrigger>
