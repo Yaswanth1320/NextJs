@@ -21,27 +21,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { toast } from "./ui/use-toast";
+import { formSchema, formSchemaType } from "@/schema/form";
+import { CreateForm } from "@/serveractions/form";
 
-type formSchemaType = z.infer<typeof formSchema>;
-
-const formSchema = z.object({
-  name: z.string().min(4),
-  description: z.string().optional(),
-});
-
-export const CreateForm = () => {
+export const CreateFormBtn = () => {
   const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: formSchemaType) {
+  async function onSubmit(values: formSchemaType) {
     try {
-      console.log(values);
+      const formId = await CreateForm(values);
+      toast({
+        title: "Success",
+        description: "Form submitted successfully",
+      });
+      console.log("Formid", formId);
     } catch (error) {
       toast({
         title: "Error",
@@ -53,7 +52,13 @@ export const CreateForm = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Create new form</Button>
+        <Button
+          className="group border border-primary/20 h-[180px] w-[200px] text-[0.9rem] flex 
+        flex-col items-center justify-center hover:border-primary hover:cursor-pointer border-dashed gap-2"
+        >
+          <FaFileUpload className="text-[1.1rem]" />
+          Create new form
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -95,9 +100,7 @@ export const CreateForm = () => {
         </Form>
         <DialogFooter>
           <Button
-            onClick={() => {
-              form.handleSubmit(onSubmit);
-            }}
+            onClick={form.handleSubmit(onSubmit)}
             disabled={form.formState.isSubmitting}
             className="w-full mt-4"
           >

@@ -1,5 +1,5 @@
 import { CardWrapper } from "@/components/CardWrapper";
-import { CreateForm } from "@/components/CreateForm";
+import { CreateFormBtn } from "@/components/CreateForm";
 import { StatsCards } from "@/components/StatsCards";
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
@@ -13,7 +13,7 @@ export default function Home() {
       <Separator className="my-6" />
       <h2 className="col-span-2 text-3xl">Your Forms</h2>
       <Separator className="my-6" />
-      <CreateForm />
+      <CreateFormBtn />
     </div>
   );
 }

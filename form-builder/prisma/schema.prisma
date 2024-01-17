@@ -23,6 +23,8 @@ model Form{
   content String @default("[]")
   formUrl String @default(uuid())
   formSubmissions FormSubmission[]
+
+  @@unique([name,userId])
 }
 
 model FormSubmission{
