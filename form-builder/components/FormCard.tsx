@@ -45,17 +45,17 @@ export const FormCard = ({ form }: { form: Form }) => {
       </CardContent>
       <CardFooter>
         {!form.published && (
-          <Button asChild className="mt-2 w-full text-md gap-4">
+          <Button asChild variant={"secondary"} className="mt-2 w-full text-md gap-4">
             <Link
               className="flex items-center gap-2"
-              href={`/forms/${form.id}`}
+              href={`/builder/${form.id}`}
             >
               Edit form <MdEditSquare />
             </Link>
           </Button>
         )}
         {form.published && (
-          <Button asChild className="mt-2 w-full text-md gap-4">
+          <Button asChild variant={"secondary"} className="mt-2 w-full text-md gap-4">
             <Link
               className="flex items-center gap-2"
               href={`/forms/${form.id}`}
