@@ -5,6 +5,7 @@ import SaveFormButton from "./SaveFormButton";
 import PublishFormBtn from "./PublishFormBtn";
 import Editer from "./Editer";
 import { DndContext } from "@dnd-kit/core";
+import DragOverlayWrapper from "./DragOverlayWrapper";
 
 function FormBuilder({ form }: { form: Form }) {
   return (
@@ -29,6 +30,7 @@ function FormBuilder({ form }: { form: Form }) {
           <Editer />
         </div>
       </main>
+      <DragOverlayWrapper />
     </DndContext>
   );
 }
