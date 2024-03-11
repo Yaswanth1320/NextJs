@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import EditerSidebar from "./EditerSidebar";
-import { useDroppable } from "@dnd-kit/core";
+import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
 import useDesigner from "./Hooks/useDesigner";
 
 function Editer() {
@@ -13,6 +13,14 @@ function Editer() {
       isDesignerDropArea: true,
     },
   });
+
+  useDndMonitor({
+    onDragEnd : (event : DragEndEvent ) => {
+      const { active,over } = event;
+      if(!active || !over ) return;
+      console.log("Darg end", event);
+    }
+  })
 
   return (
     <div className="w-full h-full flex">
