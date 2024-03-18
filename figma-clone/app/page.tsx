@@ -1,19 +1,4 @@
-"use client";
-import LeftSideBar from "@/components/LeftSideBar";
-import Live from "@/components/Live";
-import Navbar from "@/components/Navbar";
-import RightSideBar from "@/components/RightSideBar";
+import dynamic from "next/dynamic";
+const App = dynamic(() => import("./App"), { ssr: false });
 
-export default function Page() {
-  return (
-    <main className="h-screen overflow-hidden">
-      <Navbar />
-
-      <section className="flex h-full flex-row">
-        <LeftSideBar />
-        <Live />
-        <RightSideBar />
-      </section>
-    </main>
-  );
-}
+export default App;
