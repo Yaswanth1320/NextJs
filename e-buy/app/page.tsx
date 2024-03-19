@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
-import { Spotlight } from "@/components/ui/spotlight";
+import SliderOne from "@/components/ui/Slider";
+import { Spotlight } from "@/components/ui/Spotlight";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+    <div className="w-full md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
       <Navbar />
       <Spotlight
         className="hidden md:flex left-80"
@@ -24,6 +25,10 @@ export default function Home() {
         <Link className="flex items-center justify-center rounded-full border w-48 p-2 mx-auto my-6 text-white cursor-pointer hover:bg-white hover:text-black duration-500" href={'/book'}>
           Book Now
         </Link>
+
+        <div className="w-full pt-20">
+          <SliderOne />
+        </div>
       </div>
     </div>
   );
