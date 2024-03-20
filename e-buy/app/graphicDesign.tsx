@@ -1,5 +1,8 @@
-import { ThreeDCardDemo } from "@/components/Graphics/ThreeDCardDemo";
+"use client";
+
 import { motion } from "framer-motion";
+import { ThreeDCardExample } from "./Accernity/3d-card-accernity";
+import { EvervaultCardSnippet } from "./Accernity/EvervaultCardSnippet";
 
 const GraphicDesign = () => {
   return (
@@ -21,7 +24,7 @@ const GraphicDesign = () => {
           animate={{ y: 0, opacity: 1 }}
           className="px-10 md:px-0"
         >
-          <ThreeDCardDemo />
+          <ThreeDCardExample />
         </motion.div>
 
         <motion.div
@@ -29,7 +32,7 @@ const GraphicDesign = () => {
           animate={{ y: 0, opacity: 1 }}
           className="px-10 md:px-0"
         >
-          {/* <EvervaultCardSnippet /> */}
+          <EvervaultCardSnippet />
         </motion.div>
       </div>
     </div>
