@@ -2,7 +2,7 @@
 **DropZone** :
 *https://dropzonr.vercel.app*
 
-**Destinations.com**:
+**Destinations**:
 *https://destinations-theta.vercel.app*
 
 **Threads-App**:
